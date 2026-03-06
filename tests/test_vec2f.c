@@ -105,6 +105,26 @@ bool test_vec2f_norm() {
     return false;
 }
 
+bool test_vec2f_transform() {
+
+    printf("### Testing vec2f transform...\n");
+
+    mat3f m = mat3f_identity();
+
+    vec2f t = {2,3};
+
+    m = mat3f_translate(m, t);
+
+    vec2f v = {1,1};
+
+    vec2f r = vec2f_transform(m, v);
+
+    if (r.x != 3) return true;
+    if (r.y != 4) return true;
+
+    return false;
+}
+
 int main(void) {
     printf("\n");
 
@@ -115,6 +135,7 @@ int main(void) {
     TEST(test_vec2f_dot);
     TEST(test_vec2f_len);
     TEST(test_vec2f_norm);
+    TEST(test_vec2f_transform);
 
     printf("\nAll tests passed. Bye!\n\n");
 
