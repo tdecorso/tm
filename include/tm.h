@@ -313,4 +313,16 @@ static mat3f mat3f_transform(vec2f t, float angle, vec2f s)
     return m;
 }
 
+static mat3f mat3f_orthographic(float left, float right, float bottom, float top) {
+    mat3f m = mat3f_identity();
+
+    m.data[0] = 2.0f / (right - left);   // scale X
+    m.data[4] = 2.0f / (top - bottom);   // scale Y
+
+    m.data[2] = - (right + left) / (right - left);   // translate X
+    m.data[5] = - (top + bottom) / (top - bottom);   // translate Y
+
+    return m;
+}
+
 #endif // H_TM
